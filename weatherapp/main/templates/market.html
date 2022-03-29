@@ -1,0 +1,121 @@
+{%extends 'layout.html'%}
+{%block title%}Market{%endblock%}
+{%block url%}/market{%endblock%}
+{%block name%}Welcome to Cars-Market{%endblock%}
+{%block content%}
+
+{%if user.is_authenticated%}
+
+    <div class="album py-5 bg-light">
+    <div class="container">
+          {%if messages%}
+
+                       <div class="alert alert-warning alert-dismissible fade show" id="demo" role="alert">
+                            {% for message in messages %}
+                            {% if forloop.first %}
+                               {{ message }}
+                            {%endif%}
+                           {%endfor%}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" onclick="myFunction()" aria-label="Close"></button>
+                        </div>
+
+                {%endif%}
+         <form method="POST" action="{% url 'search' %}">
+      <div style="display: flex;flex-direction: row;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+    align-items: baseline;
+    align-content: center;">
+    {%csrf_token%}
+          <input type="text" class="form-control" name="searched">
+        <button class="btn btn-success"  type="submit">Search</button>
+      </div>
+               </form>
+
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {%for car in cars%}
+           {%if car.approved%}
+                    <div class="col">
+                      <div class="card shadow-sm">
+                          <div style="">
+                          {%if car.photo%}
+                                <img src="{{car.photo.url}}" style="max-height: 225px;
+                width: 100%; object-fit: cover;">
+                          {%else%}
+
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{car.carname}}</text></svg>
+                          {%endif%}
+                          </div>
+                          <div class="card-body">
+                          <p class="card-text">{{car.description}}</p>
+                            <p class="card-text">{{car.venue_owner}}</p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <a href="{%url    'view' car.id %}"  class="btn btn-sm btn-outline-secondary">View</a>
+                                {%if user.id == car.user%}
+
+                              <a href="{%url  'update' car.id %}" class="btn btn-sm btn-info">Edit</a>
+                                 {%endif%}
+                            </div>
+
+                            <small class="text-muted">{{car.price}}$</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+            {%endif%}
+          {%endfor%}
+    </div>
+      </div>
+    </div>
+
+
+
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+
+        {% if cars.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ cars.previous_page_number }}">Previous</a>
+            </li>
+      {%else%}
+            <li class="page-item disabled">
+                <a class="page-link" href="">Previous</a>
+            </li>
+      {%endif%}
+
+
+
+
+
+        {%for i in nums%}
+        <li class="page-item">
+            <a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+        </li>
+        {%endfor%}
+
+
+
+
+
+
+       {% if cars.has_next %}
+             <li class="page-item">
+                 <a class="page-link" href="?page={{ cars.next_page_number }}">Next</a>
+             </li>
+      {%else%}
+             <li class="page-item disabled">
+                 <a class="page-link" href="">Next</a>
+             </li>
+      {%endif%}
+  </ul>
+</nav>
+
+{%else%}
+<div class="alert alert-secondary" role="alert">
+  You haven't been registered yet!To register  <a href="{%url 'login' %}" class="alert-link">click here</a>!
+</div>
+{%endif%}
+{%endblock%}

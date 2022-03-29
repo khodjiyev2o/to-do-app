@@ -1,0 +1,27 @@
+{%extends 'layout.html'%}
+{%block title%}View{%endblock%}
+{%block name%}Welcome to Cars-Market{%endblock%}
+{%block url%}/market{%endblock%}
+{%block content%}
+{%if user.is_authenticated%}
+<center>
+    {%if cars.photo %}
+    <img src="{{cars.photo.url}}">
+    {%endif%}
+    <h3>Avtomobil modeli:{{cars.carname}}</h3><br>
+    <h3>Avtomobil Egasi:{{cars.owner_phone}}</h3><br>
+    <h3>Avtomobil haqida malumot :{{cars.description}}</h3><br>
+    <h3>Avtomobil narxi:{{cars.price}}$</h3><br>
+     {%if user.id == cars.user%}
+    <form id="my_form" method="post" action="{% url 'deletecar' cars.id %}">
+        {% csrf_token %}
+        <button type="submit" class='btn btn-danger'>Delete</button>
+    </form>
+    {%endif%}
+</center>
+{%else%}
+<div class="alert alert-secondary" role="alert">
+  You haven't been registered yet!To register  <a href="{%url 'login' %}" class="alert-link">click here</a>!
+</div>
+{%endif%}
+{%endblock%}
