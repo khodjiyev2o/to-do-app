@@ -23,6 +23,12 @@ def index(request):
             return redirect('login')
     else:
         return render(request, 'members.html')
+
+
+
+
+
+
 def logout_user(request):
     logout(request)
     messages.warning(request, ('You have been logged out!'))

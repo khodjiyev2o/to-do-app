@@ -1,13 +1,15 @@
-from django.shortcuts import render,redirect
+from django.contrib.sites import requests
+from django.shortcuts import render, redirect
 
-import requests
-from .forms import CityForm,CarForm
+from .forms import CityForm, CarForm
 from django.http import HttpResponseRedirect
 from django.views.generic import DeleteView, UpdateView, DetailView
 from .models import Weather, Car
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib import messages
+
+
 # Create your views here.
 
 
@@ -15,7 +17,7 @@ def approval(request):
     cars = Car.objects.all()
     if request.user.is_superuser:
         if request.method == "POST":
-            id_list=request.POST.getlist('boxes')
+            id_list = request.POST.getlist('boxes')
             Car.objects.all().update(approved="False")
             for id in id_list:
                 Car.objects.filter(id=id).update(approved="True")
@@ -25,16 +27,15 @@ def approval(request):
         messages.success(request, ('You are not a superuser!'))
         return redirect('user_profile')
 
+    return render(request, 'approval.html', {'cars': cars})
 
-    return render(request,'approval.html',{'cars':cars})
+
 def user_profile(request):
     if request.user.is_authenticated:
         cars = Car.objects.filter(user=request.user.id)
-        return render(request,'user_profile.html',{'cars':cars})
+        return render(request, 'user_profile.html', {'cars': cars})
     else:
         return redirect('main')
-
-
 
 
 def search(request):
@@ -48,7 +49,7 @@ def search(request):
 def market(request):
     data = []
     cars = Car.objects.all().order_by('-id')
-    nums=[]
+    nums = []
 
     for car in cars:
         venue_owner = User.objects.get(pk=car.user)
@@ -58,38 +59,33 @@ def market(request):
             'description': car.description,
             'price': car.price,
             'carname': car.carname,
-            'user':  car.user,
-            'venue_owner':venue_owner,
-            'photo':car.photo,
-            'approved':car.approved,
+            'user': car.user,
+            'venue_owner': venue_owner,
+            'photo': car.photo,
+            'approved': car.approved,
         }
 
         data.append(car_info)
 
-    paginator = Paginator(data,6)  # Show 6 contacts per page.
+    paginator = Paginator(data, 6)  # Show 6 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    nums="a"*page_obj.paginator.num_pages
-    return render(request, 'market.html', {'cars': page_obj,'nums':nums})
-
-
+    nums = "a" * page_obj.paginator.num_pages
+    return render(request, 'market.html', {'cars': page_obj, 'nums': nums})
 
 
 def pricing(request):
     if request.method == "POST":
-        form = CarForm(request.POST,request.FILES)
+        form = CarForm(request.POST, request.FILES)
         if form.is_valid():
-            user= form.save(commit=False)
-            user.user=request.user.id
+            user = form.save(commit=False)
+            user.user = request.user.id
             user.save()
             messages.success(request, ('Wait for your item to be approved,it will take some time!'))
             return HttpResponseRedirect('market')
     car = CarForm()
 
     return render(request, 'pricing.html', {'form': car})
-
-
-
 
 
 def index(request):
@@ -121,13 +117,11 @@ def index(request):
     return render(request, 'main.html', {'data': data, 'form': form})
 
 
-
 class CarUpdateView(UpdateView):
     model = Car
     template_name = 'pricing.html'
-    form_class=CarForm
+    form_class = CarForm
     success_url = '/market'
-
 
 
 class WeatherDeleteView(DeleteView):
@@ -136,11 +130,11 @@ class WeatherDeleteView(DeleteView):
     fields = ['city']
 
 
-
 class CarDeleteView(DeleteView):
     model = Car
     success_url = '/market'
-    fields = ['carname','description','owner','price']
+    fields = ['carname', 'description', 'owner', 'price']
+
 
 class CarDetailView(DetailView):
     model = Car

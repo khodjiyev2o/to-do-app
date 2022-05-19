@@ -17,7 +17,7 @@ class Car(models.Model):
     price = models.CharField(max_length=30)
     description=models.TextField()
     user=models.IntegerField(blank=False,default=1)
-    photo=models.ImageField(upload_to='cars/',blank=True,null=True)
+    photo=models.ImageField(upload_to='carsTreu/',blank=True,null=True)
     approved = models.BooleanField(default=False)
 
     def __str__(self):
