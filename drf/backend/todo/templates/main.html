@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: #ecf0f3;
+
+        }
+
+        .container {
+            width: 1200px;
+            padding: 0 10px;
+            margin: 0 auto;
+        }
+
+        .box {
+            margin-top: 50px;
+            text-align: center;
+            padding: 10px;
+            width: 400px;
+            height: 250px;
+            border-radius: 10px;
+            background: #ecf0f3;
+            box-shadow: 13px 13px 20px #cbced1,
+                -13px -13px 20px #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .date {
+            font-family: 'Big Shoulders Stencil Display', cursive;
+            font-weight: 700;
+        }
+
+
+        .input {
+            border: none;
+            outline: none;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            padding: 5px 25px;
+            border-radius: 15px;
+            padding: 10px 20px 10px 20px;
+            font-weight: 400;
+            font-size: 14px;
+            background: none;
+            box-shadow: inset 8px 8px 8px #cbced1,
+                inset -8px -8px 8px #ffffff;
+        }
+
+        .add {
+            outline: none;
+            border: none;
+            cursor: pointer;
+            width: 50px;
+            height: 25px;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Lato', sans-serif;
+            color: #fff;
+            text-align: center;
+            background: #24cfaa;
+            box-shadow: 3px 3px 8px #b1b1b1,
+                -3px -3px 8px #ffffff;
+            transition: 0.5s;
+        }
+
+        .add:hover {
+            background: #2fdbb6;
+        }
+
+        .add:active {
+            background: #1da88a;
+        }
+
+        .author {
+            font-size: 18px;
+            color: rgb(188, 190, 211);
+        }
+
+
+        .div {
+            overflow: none;
+            text-align: left;
+            width: 400px;
+            height: 40px;
+            border-radius: 10px;
+            background: #ecf0f3;
+            box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+            margin-bottom: 25px;
+            padding: 10px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        div>button {
+            outline: none;
+            border: none;
+            background-color: #24cfaa;
+            border-radius: 5px;
+            padding: 2px 10px;
+            color: #fff;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="box container">
+        <div class="header">
+            <h2>To Do</h2>
+            <h2 class="date"></h2>
+        </div>
+        <input class="input" type="text" placeholder="Enter your activity">
+        <button class="add" onclick="save()">+</button>
+        <p class="author">
+            Created by Khodjiyev Samandar for FreshmanCapstoneProject
+        </p>
+    </div>
+
+
+
+
+    <script>
+
+
+        setInterval(function () {
+            var sana = new Date();
+            var soat = sana.getHours();
+            var minut = sana.getMinutes();
+            var sekund = sana.getSeconds();
+
+            if (sekund < 10) {
+                sekund = '0' + sekund
+            };
+
+            if (minut < 10) {
+                minut = "0" + minut;
+            }
+
+            if (soat < 10) {
+                soat = '0' + soat
+            }
+
+            document.querySelector('.date').innerText = soat + ':' + minut + ":" + sekund
+        }, 1000);
+
+
+
+
+
+        function save() {
+
+            var body = document.querySelector('body')
+            var input = document.querySelector('.input');
+            var querySpan = document.querySelector('.edited');
+
+
+            if (querySpan === null) {
+
+                var div = document.createElement('div');
+                div.classList.add('div', 'container')
+                body.appendChild(div)
+
+                var p = document.createElement('p');
+                div.appendChild(p)
+                p.innerText = input.value;
+
+                var checkBox = document.createElement('input');
+                checkBox.type = 'checkbox';
+                div.appendChild(checkBox);
+                checkBox.addEventListener('change', function (event) {
+                    if (event.target.checked) {
+                        div.children[0].style.textDecoration = 'line-through'
+                    } else {
+                        div.children[0].style.textDecoration = 'none'
+                    }
+                });
+
+
+                var Delete = document.createElement('button');
+                Delete.classList.add('clear')
+                Delete.innerText = "Clear";
+                div.appendChild(Delete);
+                Delete.addEventListener('click', function (event) {
+                    var DeletedText = Delete.parentNode.remove();
+                });
+
+
+                
+				var edit=document.createElement('button');
+				edit.innerText="Edit";
+				
+				edit.addEventListener('click',function(event) {
+					var editP = div.children[0]
+					input.value=editP.innerText;
+					console.log(editP.classList.add('edited'));
+				});
+
+				div.appendChild(edit);
+
+
+
+                input.value = ""
+            } else {
+                querySpan.innerText = input.value;
+                input.value = "";
+                querySpan.classList.remove('edited');
+            }
+
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
