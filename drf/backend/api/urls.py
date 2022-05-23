@@ -4,10 +4,10 @@ from . import views
 
 urlpatterns=[
     path('',views.api_home),
-    path('products/', views.products,name="products"),
-    path('product_detail/<int:pk>', views.product_detail, name="product_detail"),
-    path('product_delete/<int:pk>', views.product_delete, name="product_delete"),
-    path('product_update/<int:pk>', views.product_update, name="product_update"),
-    path('product_create', views.product_create, name="product_create"),
+    path('task-list/', views.products,name="tasks"),
+    path('task-detail/<str:pk>/', views.product_detail, name="task_detail"),
+    path('task-delete/<str:pk>/', views.product_delete, name="task_delete"),
+    path('task-update/<str:pk>/', views.product_update, name="task_update"),
+    path('task-create/', views.product_create, name="task_create"),
 
 ]

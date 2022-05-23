@@ -51,7 +51,7 @@ def product_delete(request, pk):
     return HttpResponse(status=204)
 
 
-@api_view(["PUT"])
+@api_view(["PUT",'POST'])
 def product_update(request, pk):
     instance = Product.objects.get(id=pk)
     serializer = ProductSerializer(instance, data=request.data)
