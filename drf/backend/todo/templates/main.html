@@ -195,7 +195,7 @@
                           'title':title.value
                            })
                         }).then(function(response){
-                            list();
+
 				            document.location.reload()
 				            document.querySelector(".input").value=""
                             })
@@ -235,13 +235,13 @@
                                    list=data
 
                                     for (product in list){
-                                    console.log(list[product])
-
+                                   
+                                        
                                         var item = `
                                                <div id="data-row-${product}"class="div container">
                                                             <p class="">${list[product].title}</p>
-                                                           <button class="btn btn-sm btn-outline-info edit">Edit</button>
-                                                           <button class="btn btn-sm btn-outline-dark delete">Delete</button>
+                                                           <button class="edit" onclick='edit(event)'>Edit</button>
+                                                           <button class="delete">Delete</button>
                                                 </div>
                                              `
 
@@ -251,12 +251,24 @@
                                         wrapper.innerHTML+=item
 
 
-
+                                        
                                         }
 
-                     })
+                                 })
 
+                    }
+
+
+function edit(event){
+    
+    console.log("edited",event.target.parentNode.children[0].innerText)
+    edit=event.target.parentNode.children[0].innerText
+    document.querySelector(".input").value=edit
 }
+
+
+
+
 
 
 </script>

@@ -22,7 +22,7 @@ def api_home(request, *args, **kwargs):
 
 @api_view(["GET"])
 def products(request, *args, **kwargs):
-    instance = Product.objects.all()
+    instance = Product.objects.all().order_by('-id')
     serializer = ProductSerializer(instance, many=True).data
     return Response(serializer)
 
