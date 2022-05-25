@@ -2,29 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15205f3a-a238-43bd-87b3-adee54f41021" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/Procfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pagesapp/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drf/backend/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/drf/backend/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drf/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/drf/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drf/backend/todo/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/drf/backend/todo/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +41,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../portfolio/ecommerce" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
