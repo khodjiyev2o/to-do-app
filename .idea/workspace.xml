@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="15205f3a-a238-43bd-87b3-adee54f41021" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drf/backend/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/drf/backend/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drf/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/drf/backend/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drf/backend/todo/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/drf/backend/todo/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
